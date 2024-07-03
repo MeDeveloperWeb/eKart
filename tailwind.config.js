@@ -6,7 +6,7 @@ export default {
       fontFamily: {
         display: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
         logo: 'Satisfy, cursive',
-        cover: 'Amaranth, sans-serif'
+        heading: 'Amaranth, sans-serif'
       },
       colors: {
         bisque: '#ffe4c4'

@@ -27,3 +27,8 @@
 * {
   box-sizing: border-box;
 }
+
+html.dark {
+  scrollbar-color: bisque #000000;
+  scrollbar-width: thin;
+}

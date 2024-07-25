@@ -43,31 +43,46 @@ export default function Layout({ children }) {
 
   return (
     <div className="scroll box-border min-h-screen bg-gray-100 font-display text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-300">
-      <header
+      <nav
         className={`${showHeader ? 'sticky top-0' : ''} z-[1000] flex justify-between gap-4 bg-white bg-opacity-25 px-8 py-4 shadow-lg backdrop-blur-sm dark:bg-slate-950 dark:shadow-slate-200/40`}
       >
-        <Link to={'/'} className="font-logo text-3xl">
+        <Link to={'/'} className="font-logo text-3xl" aria-label="Logo">
           Fashion-Kart
         </Link>
-        <nav>
-          <ul className="flex h-full items-center justify-evenly gap-8">
-            <li>
-              <button onClick={toggleTheme}>
-                {darkTheme ? sun() : moon()}
-              </button>
-            </li>
-            <li>
-              <Link to={'/categories'}>{shoppingStore()}</Link>
-            </li>
-            <li>
-              <Link to={'/cart'}>{cart()}</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+
+        <ul
+          className="flex h-full items-center justify-evenly gap-8"
+          aria-label="Nav Items"
+        >
+          <li>
+            <button
+              aria-label={
+                darkTheme ? 'Switch to light theme' : 'Switch to dark theme'
+              }
+              onClick={toggleTheme}
+              data-testid="theme-toggler"
+            >
+              {darkTheme ? sun() : moon()}
+            </button>
+          </li>
+          <li>
+            <Link to={'/categories'} aria-label="Product Categories">
+              {shoppingStore()}
+            </Link>
+          </li>
+          <li>
+            <Link to={'/cart'} aria-label="Shopping Cart">
+              {cart()}
+            </Link>
+          </li>
+        </ul>
+      </nav>
       {/* Renders children if provided or Outlet */}
       {children ?? <Outlet />}
-      <footer className="flex justify-center bg-bisque bg-opacity-50 px-8 py-28 text-yellow-950 dark:bg-yellow-950 dark:text-bisque">
+      <footer
+        className="flex justify-center bg-bisque bg-opacity-50 px-8 py-28 text-yellow-950 dark:bg-yellow-950 dark:text-bisque"
+        aria-label="footer"
+      >
         <p>Copyright Fashion-Kart since 2084 </p>
       </footer>
     </div>

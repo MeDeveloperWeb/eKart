@@ -48,7 +48,10 @@ export default function Cover() {
         </div>
       </div>
 
-      <BigCoverText className="-z-1 outlined-text stroke-1 text-transparent" />
+      <BigCoverText
+        className="-z-1 outlined-text stroke-1 text-transparent"
+        aria-hidden="true"
+      />
     </div>
   );
 }

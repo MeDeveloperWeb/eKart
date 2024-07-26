@@ -32,7 +32,10 @@ export default function Cover() {
   );
 
   return (
-    <div className="-mt-[4.25rem] flex w-full justify-center overflow-hidden bg-bisque dark:bg-[#562f00]">
+    <div
+      className="-mt-[4.25rem] flex w-full justify-center overflow-hidden bg-bisque dark:bg-[#562f00]"
+      data-testid="main-cover"
+    >
       <BigCoverText className="-z-7 text-[#562f00] dark:text-[#d1cdc7]" />
       <div className="flex min-h-screen w-full flex-col justify-between pt-24  lg:pt-0">
         <div className="relative mx-auto my-0 max-h-[80vh] flex-1 xl:max-h-screen">

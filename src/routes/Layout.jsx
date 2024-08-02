@@ -66,7 +66,7 @@ export default function Layout({ children }) {
             </button>
           </li>
           <li>
-            <Link to={'/categories'} aria-label="Product Categories">
+            <Link to={'/store'} aria-label="Store">
               {shoppingStore()}
             </Link>
           </li>

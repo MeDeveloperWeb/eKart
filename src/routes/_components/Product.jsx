@@ -8,6 +8,7 @@ export default function Product({ image, title }) {
           src={image}
           alt={title}
           className="max-h-[50vh] w-[80%] rounded-3xl"
+          loading="lazy"
         />
       </div>
       <p className="overflow-hidden text-ellipsis text-nowrap px-4 text-center text-sm font-medium text-gray-500 md:text-base dark:text-gray-300">

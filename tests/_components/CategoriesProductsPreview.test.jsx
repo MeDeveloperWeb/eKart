@@ -1,70 +1,88 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import CategoryProduct from '../../src/routes/_components/CategoryProductsPreview';
 import { getCategoryProducts } from '../../src/routes/_lib/products';
-
-vi.mock('react-router-dom', () => ({
-  Link: ({ to, ...props }) => <a href={to} {...props}></a>
-}));
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../src/routes/_lib/products', () => ({
   getCategoryProducts: vi.fn(
-    (category, limit) =>
+    () =>
       new Promise((resolve) =>
         resolve([
           {
             id: 1,
             title: 'First',
-            img: 'first.png'
+            image: 'first.png'
           },
           {
             id: 2,
             title: 'Second',
-            img: 'second.png'
+            image: 'second.png'
           }
         ])
       )
   )
 }));
 
-vi.mock('./Product', ({ image, title }) => (
-  <>
-    <div data-testid="test-title">{title}</div>
-    <div data-testid="test-image">{image}</div>
-  </>
-));
+vi.mock('../../src/routes/_components/Product', () => ({
+  default: ({ image, title }) => (
+    <>
+      <div data-testid="test-title">{title}</div>
+      <div data-testid="test-image">{image}</div>
+    </>
+  )
+}));
 
 describe('it renders category products', () => {
-  it('renders category name as heading', () => {
-    render(<CategoryProduct category={'Test'} />);
+  it('calls function one time to get products', async () => {
+    render(
+      <BrowserRouter>
+        <CategoryProduct category={'Test'} />
+      </BrowserRouter>
+    );
 
-    expect(screen.getByRole('heading')).toHaveTextContent('Test');
+    await waitFor(() => {
+      expect(getCategoryProducts).toHaveBeenCalledWith('test', 4);
+      expect(getCategoryProducts).toHaveBeenCalledOnce();
+    });
   });
 
-  it('links to that category (lowercase) with Browse More text', () => {
-    render(<CategoryProduct category={'Test'} />);
+  it('renders category name as heading', async () => {
+    render(
+      <BrowserRouter>
+        <CategoryProduct category={'Test'} />
+      </BrowserRouter>
+    );
 
-    expect(screen.getByRole('link')).toHaveAttribute('href', 'test');
+    expect(await screen.findByRole('heading')).toHaveTextContent('Test');
   });
 
-  it('renders calls function to get products', () => {
-    render(<CategoryProduct category={'Test'} />);
+  it('links to that category (lowercase) with Browse More text', async () => {
+    render(
+      <BrowserRouter>
+        <CategoryProduct category={'Test'} />
+      </BrowserRouter>
+    );
 
-    expect(getCategoryProducts).toHaveBeenCalledWith('test', 4);
+    expect(await screen.findByRole('link')).toHaveAttribute('href', '/test');
   });
 
-  // it('renders calls function to get products', async () => {
-  //   vi.useFakeTimers();
-  //   act(() => {
-  //     render(<CategoryProduct category={'Test'} />);
-  //   });
-  //   act(() => {
-  //     vi.runAllTimers();
-  //   });
-  //   const titles = screen.getAllByTestId('test-title');
-  //   const images = screen.getAllByTestId('test-image');
-  //   expect(titles).toHaveLength(2);
-  //   expect(titles[0]).toHaveTextContent('First');
-  //   expect(titles[1]).toHaveTextContent('Second');
-  // });
+  it('renders products', async () => {
+    render(
+      <BrowserRouter>
+        <CategoryProduct category={'Test'} />
+      </BrowserRouter>
+    );
+
+    const titles = await screen.findAllByTestId('test-title');
+    const images = await screen.findAllByTestId('test-image');
+
+    expect(titles).toHaveLength(2);
+    expect(titles[0]).toHaveTextContent('First');
+    expect(titles[1]).toHaveTextContent('Second');
+
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveTextContent('first.png');
+    expect(images[1]).toHaveTextContent('second.png');
+  });
 });

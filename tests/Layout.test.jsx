@@ -56,10 +56,10 @@ describe('App Layout Header renders correctly', () => {
 
   it('renders categories link correctly', () => {
     const nav = screen.getByLabelText('Nav Items');
-    const categories = screen.getByLabelText(/Product Categories/i);
+    const categories = screen.getByLabelText(/Store/i);
 
     expect(nav).toContainElement(categories);
-    expect(categories).toHaveAttribute('href', '/categories');
+    expect(categories).toHaveAttribute('href', '/store');
   });
 
   it('renders cart link correctly', () => {

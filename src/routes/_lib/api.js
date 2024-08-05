@@ -2,7 +2,7 @@ export async function storeGET(endpoint) {
   const baseURL = 'https://fakestoreapi.com/';
 
   try {
-    const response = await fetch(`${baseURL}${endpoint}}`, {
+    const response = await fetch(`${baseURL}${endpoint}`, {
       method: 'GET'
     });
 

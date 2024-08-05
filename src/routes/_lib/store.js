@@ -5,3 +5,7 @@ export async function getCategoryProducts(category, limit = 10, offset = 0) {
     `products/category/${category}/?limit=${limit}&offset=${offset}`
   );
 }
+
+export default async function getCategories() {
+  return await storeGET('products/categories');
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getCategoryProducts } from '../_lib/products';
+import { getCategoryProducts } from '../_lib/store';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 

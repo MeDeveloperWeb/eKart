@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import CategoryProduct from '../../src/routes/_components/CategoryProductsPreview';
-import { getCategoryProducts } from '../../src/routes/_lib/products';
+import { getCategoryProducts } from '../../src/routes/_lib/store';
 import { BrowserRouter } from 'react-router-dom';
 
-vi.mock('../../src/routes/_lib/products', () => ({
+vi.mock('../../src/routes/_lib/store', () => ({
   getCategoryProducts: vi.fn(
     () =>
       new Promise((resolve) =>

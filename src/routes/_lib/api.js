@@ -1,10 +1,13 @@
-export async function storeGET(endpoint) {
+export async function storeGET(endpoint, params) {
   const baseURL = 'https://fakestoreapi.com/';
 
   try {
-    const response = await fetch(`${baseURL}${endpoint}`, {
-      method: 'GET'
-    });
+    const response = await fetch(
+      `${baseURL}${endpoint}?${new URLSearchParams(params).toString()}`,
+      {
+        method: 'GET'
+      }
+    );
 
     if (!response.ok)
       return {

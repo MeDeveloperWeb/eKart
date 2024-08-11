@@ -4,7 +4,7 @@ import Cover from './_components/Cover';
 
 function App() {
   return (
-    <main className="">
+    <main>
       <Cover />
       <Categories />
     </main>

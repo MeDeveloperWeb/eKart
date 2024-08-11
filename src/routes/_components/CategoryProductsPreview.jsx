@@ -11,7 +11,7 @@ export default function CategoryProduct({ category }) {
 
   useEffect(() => {
     async function fetchCategory() {
-      const data = await getCategoryProducts(category.toLowerCase(), limit);
+      const data = await getCategoryProducts(category.toLowerCase(), { limit });
 
       setProducts(data);
     }

@@ -42,7 +42,7 @@ export default function Layout({ children }) {
   }, [scrollPos]);
 
   return (
-    <div className="scroll box-border min-h-screen bg-gray-100 font-display text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-300">
+    <div className="scroll box-border flex min-h-screen flex-col bg-gray-100 font-display text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-300">
       <nav
         className={`${showHeader ? 'sticky top-0' : ''} z-[1000] flex justify-between gap-4 bg-white bg-opacity-25 px-8 py-4 shadow-lg backdrop-blur-sm dark:bg-slate-950 dark:shadow-slate-200/40`}
       >

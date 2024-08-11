@@ -17,7 +17,6 @@ export default function Store() {
     async function fetchProducts() {
       const products = await getProducts(filter);
       setProducts(products);
-      console.log(filter);
     }
     fetchProducts();
   }, [filter]);
@@ -33,6 +32,7 @@ export default function Store() {
                 key={product.id}
                 image={product.image}
                 title={product.title}
+                id={product.id}
               />
             ))}
       </div>

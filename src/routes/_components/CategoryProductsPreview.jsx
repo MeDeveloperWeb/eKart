@@ -28,7 +28,7 @@ export default function CategoryProduct({ category }) {
       </div>
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map(({ id, title, image }) => (
-          <Product key={id} title={title} image={image} />
+          <Product key={id} title={title} image={image} id={id} />
         ))}
       </div>
       <hr />

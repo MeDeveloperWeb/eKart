@@ -6,23 +6,21 @@ import sortIcon from '../../../assets/icons/sort.svg?react';
 import { getCategories } from '../../_lib/store';
 import DropDown from './DropDown';
 
-export default function Header({ filter, setFilter }) {
+export default function Header({ filter, applyFilter }) {
   const sortFilters = ['descending'];
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(filter.search || '');
+
+  console.log(filter);
 
   const searchQuery = () =>
-    setFilter((filter) => ({
-      ...filter,
-      category: '',
+    applyFilter({
       search
-    }));
+    });
 
   const resetSearch = () =>
-    setFilter((filter) => ({
-      ...filter,
-      category: '',
+    applyFilter({
       search: ''
-    }));
+    });
 
   const [categories, setCategories] = useState([]);
 
@@ -60,9 +58,7 @@ export default function Header({ filter, setFilter }) {
           icon={filterIcon}
           name={'filter'}
           value={filter.category}
-          onChange={({ target }) =>
-            setFilter((filter) => ({ ...filter, category: target.value }))
-          }
+          onChange={({ target }) => applyFilter({ category: target.value })}
         >
           All
         </DropDown>
@@ -71,9 +67,7 @@ export default function Header({ filter, setFilter }) {
           icon={sortIcon}
           name={'sort'}
           value={filter.sort}
-          onChange={({ target }) =>
-            setFilter((filter) => ({ ...filter, sort: target.value }))
-          }
+          onChange={({ target }) => applyFilter({ sort: target.value })}
         >
           Ascending
         </DropDown>
@@ -88,5 +82,5 @@ Header.propTypes = {
     search: PropTypes.string,
     sort: PropTypes.string
   }),
-  setFilter: PropTypes.func
+  applyFilter: PropTypes.func
 };

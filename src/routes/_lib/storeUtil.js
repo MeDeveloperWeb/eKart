@@ -2,17 +2,16 @@ import { searchObject } from './utils';
 import { getProducts as fetchProducts, getCategoryProducts } from './store';
 
 export async function getProducts(filter = {}) {
+  let products;
   if (filter.category) {
-    const products = await getCategoryProducts(filter.category, {
+    products = await getCategoryProducts(filter.category, {
       sort: filter.sort?.substring(0, 4) || ''
     });
-
-    return products;
+  } else {
+    products = await fetchProducts({
+      sort: filter.sort?.substring(0, 4) || ''
+    });
   }
-
-  const products = await fetchProducts({
-    sort: filter.sort?.substring(0, 4) || ''
-  });
 
   if (filter.search) {
     return searchObject(

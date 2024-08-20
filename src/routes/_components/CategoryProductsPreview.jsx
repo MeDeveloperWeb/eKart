@@ -22,7 +22,10 @@ export default function CategoryProduct({ category }) {
     <div className="mx-auto my-0 space-y-8 p-8">
       <div className="flex justify-between border-b-2 border-solid px-1">
         <h3 className=" font-heading text-xl font-semibold">{category}</h3>
-        <Link className="text-blue-500" to={category.toLowerCase()}>
+        <Link
+          className="text-blue-500"
+          to={`/store?category=${category.toLowerCase()}`}
+        >
           Browse more...
         </Link>
       </div>

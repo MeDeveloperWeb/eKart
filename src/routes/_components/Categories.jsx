@@ -7,7 +7,7 @@ export default function Categories() {
     <div id="categories" className="font-display">
       <div className="mx-4 my-2 flex items-center">
         <h1 className="flex-1 font-heading text-3xl font-bold">Categories</h1>
-        <a href="" className="text-blue-500">
+        <a href="/store" className="relative z-10 text-blue-500">
           Browse all Products
         </a>
       </div>

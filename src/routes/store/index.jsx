@@ -31,7 +31,7 @@ export default function Store() {
       }
     }
 
-    setSearchParams(new URLSearchParams(paramObj));
+    setSearchParams(paramObj);
   };
 
   const [products, setProducts] = useState(null);

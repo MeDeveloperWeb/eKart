@@ -64,7 +64,10 @@ describe('it renders category products', () => {
       </BrowserRouter>
     );
 
-    expect(await screen.findByRole('link')).toHaveAttribute('href', '/test');
+    expect(await screen.findByRole('link')).toHaveAttribute(
+      'href',
+      '/store?category=test'
+    );
   });
 
   it('renders products', async () => {

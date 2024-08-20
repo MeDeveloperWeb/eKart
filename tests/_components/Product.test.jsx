@@ -25,4 +25,14 @@ describe('Renders Product', () => {
 
     expect(screen.getByRole('link')).toHaveTextContent('title');
   });
+
+  it('links to product page', () => {
+    render(
+      <BrowserRouter>
+        <Product image="img.png" title="title" id={3} />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/store/3');
+  });
 });

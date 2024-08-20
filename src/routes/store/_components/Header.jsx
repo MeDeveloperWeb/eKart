@@ -17,6 +17,13 @@ export default function Header({ filter, setFilter }) {
       search
     }));
 
+  const resetSearch = () =>
+    setFilter((filter) => ({
+      ...filter,
+      category: '',
+      search: ''
+    }));
+
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -37,7 +44,10 @@ export default function Header({ filter, setFilter }) {
           name="search"
           className="w-full rounded-md py-3 pl-4 pr-10 shadow-md"
           value={search}
-          onChange={({ target }) => setSearch(target.value)}
+          onChange={({ target }) => {
+            setSearch(target.value);
+            target.value === '' && resetSearch();
+          }}
           onKeyDown={({ key }) => key === 'Enter' && searchQuery()}
         />
         <button className="-mx-8" type="submit" onClick={searchQuery}>

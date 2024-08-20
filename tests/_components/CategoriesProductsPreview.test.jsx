@@ -42,7 +42,9 @@ describe('it renders category products', () => {
     );
 
     await waitFor(() => {
-      expect(getCategoryProducts).toHaveBeenCalledWith('test', 4);
+      expect(getCategoryProducts).toHaveBeenCalledWith('test', {
+        limit: 4
+      });
       expect(getCategoryProducts).toHaveBeenCalledOnce();
     });
   });

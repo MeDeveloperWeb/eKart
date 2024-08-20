@@ -3,6 +3,7 @@ import Layout from './routes/Layout';
 import App from './routes/App';
 import ErrorPage from './routes/ErrorPage';
 import Store from './routes/store';
+import ProductDescription from './routes/store/[productId]';
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,17 @@ const router = createBrowserRouter([
         element: <App />
       },
       {
-        path: 'store',
-        element: <Store />
+        path: 'store/',
+        children: [
+          {
+            index: true,
+            element: <Store />
+          },
+          {
+            path: ':productId',
+            element: <ProductDescription />
+          }
+        ]
       }
     ],
     errorElement: (

@@ -1,15 +1,19 @@
 import { storeGET } from './api';
 
-export async function getCategoryProducts(category, params) {
-  return await storeGET(`products/category/${category}/`, {
+export function getCategoryProducts(category, params) {
+  return storeGET(`products/category/${category}/`, {
     ...params
   });
 }
 
-export async function getCategories() {
-  return await storeGET('products/categories/');
+export function getCategories() {
+  return storeGET('products/categories/');
 }
 
-export async function getProducts(params) {
-  return await storeGET('products/', params);
+export function getProducts(params) {
+  return storeGET('products/', params);
+}
+
+export function getProductDetails(id, params) {
+  return storeGET(`products/${id}`, params);
 }

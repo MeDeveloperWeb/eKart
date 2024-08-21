@@ -46,7 +46,12 @@ export default function Header({ filter, applyFilter }) {
           }}
           onKeyDown={({ key }) => key === 'Enter' && searchQuery()}
         />
-        <button className="-mx-8" type="submit" onClick={searchQuery}>
+        <button
+          className="-mx-8"
+          type="submit"
+          onClick={searchQuery}
+          title="Search Button"
+        >
           {searchIcon()}
         </button>
       </div>
@@ -54,9 +59,10 @@ export default function Header({ filter, applyFilter }) {
         <DropDown
           options={categories}
           icon={filterIcon}
-          name={'filter'}
+          name={'category'}
           value={filter.category}
           onChange={({ target }) => applyFilter({ category: target.value })}
+          data-testid="category"
         >
           All
         </DropDown>
@@ -66,6 +72,7 @@ export default function Header({ filter, applyFilter }) {
           name={'sort'}
           value={filter.sort}
           onChange={({ target }) => applyFilter({ sort: target.value })}
+          data-testid="sort"
         >
           Ascending
         </DropDown>

@@ -10,8 +10,6 @@ export default function Header({ filter, applyFilter }) {
   const sortFilters = ['descending'];
   const [search, setSearch] = useState(filter.search || '');
 
-  console.log(filter);
-
   const searchQuery = () =>
     applyFilter({
       search
